@@ -18,11 +18,11 @@ void menuLinea();
 
 int main(){
     vector<Carro> lista;
-    //Edificio* matrix = new Edificio();
-    //matrix->crearMatriz();
-    //matrix->initMatriz();
-    //matrix->printMatriz();
-    //matrix->freeMatriz();
+    int opcionMenu = -1;
+    bool menuActivo = true;
+    Edificio* matrix = new Edificio();
+    matrix->crearMatriz();
+    matrix->initMatriz();
 
     Carro* carro = new Carro();
     carro->setNombreModelo("CC");
@@ -31,17 +31,73 @@ int main(){
     carro->setMotor(new Motor("Eléctrico","V8"));
     carro->setPintura(new Pintura("Negro","Matte"));
 
-    //carro->getChasis()->setTipoRueda("sdf");
-    //carro->getChasis()->setTransmision("manual");
-    cout << "\n\n\tDetalles del Prototipo\n\n";
-    cout << "Modelo y Serie: "<< carro->getNombreModelo() << carro->getNumeroSerie() << endl;
-    cout << "Chasis -> " << "Tipo Rueda: " << carro->getChasis()->getTipoRueda()<<endl;
-    cout << "\tTipo de Transmisión: " << carro->getChasis()->getTransmision()<<endl;
-    cout << "\nMotor -> " << "Tipo Motor: " << carro->getMotor()->getTipoMotor() << endl;
-    cout << "\tConfiguración: " << carro->getMotor()->getConfiguracion() << endl;
-    cout << "\nPintura -> " << "Color: " << carro->getPintura()->getColor() << endl;
-    cout << "\tAcabado: " << carro->getPintura()->getAcabado() << endl;
+
+    while (menuActivo)
+    {
+        do{
+            cin.clear();
+            menu();
+            cin >> opcionMenu;
+            switch(opcionMenu){
+                case 1://Agregar Línea de producción
+                    {
+                    int opcionMenuLinea = -1;
+                    bool menuLineaAct = true;
+                    while (menuLineaAct){
+                            cin.clear();
+                            do{
+                                menuLinea();
+                                cin >> opcionMenuLinea;
+                                switch(opcionMenuLinea){
+                                    case 1://Crear prototipo
+                                    break;
+                                    case 2:
+                                    break;
+                                    case 0:
+                                    break;
+                                    default:
+                                        cout << "¡ERROR! Verifique su opción\n" <<endl;
+                                    break;
+                                }
+
+                            }while(opcionMenuLinea != 0);//end do while menú línea
+                            menuLineaAct = false;
+                        }//End while menú línea activo
+                    }
+                break;
+                case 2://Imprimir matriz
+                    matrix->printMatriz();
+                break;
+                case 3://Ver líneas de producción 
+                {
+                    cout << "\n\n\tDetalles del Prototipo\n\n";
+                    cout << "Modelo y Serie: "<< carro->getNombreModelo() << carro->getNumeroSerie() << endl;
+                    cout << "Chasis -> " << "Tipo Rueda: " << carro->getChasis()->getTipoRueda()<<endl;
+                    cout << "\tTipo de Transmisión: " << carro->getChasis()->getTransmision()<<endl;
+                    cout << "\nMotor -> " << "Tipo Motor: " << carro->getMotor()->getTipoMotor() << endl;
+                    cout << "\tConfiguración: " << carro->getMotor()->getConfiguracion() << endl;
+                    cout << "\nPintura -> " << "Color: " << carro->getPintura()->getColor() << endl;
+                    cout << "\tAcabado: " << carro->getPintura()->getAcabado() << endl;
+                }
+                break;
+                case 4://Ver lista de carros producidos
+                break;
+                case 5://Avanzar
+                break;
+                case 0:
+                    cout << "Saliendo..." << endl;
+                break;
+                default:
+                    cout << "¡ERROR! Verifique su opción\n" <<endl;
+                break;
+            }
+
+        }while(opcionMenu != 0);//end do while menú principal
+        menuActivo = false;
+    }//End while menú activo
+
     delete carro;
+    matrix->freeMatriz();
     return 0;
 }
 
@@ -53,6 +109,7 @@ void menu(){
         << "3 - Ver líneas de producción por detalles con cada carro\n"
         << "4 - Ver listado de carros producidos\n"
         << "5 - Avanzar ciclo de producción\n"
+        << "0 - Salir\n"
         << "Seleccione una opción: ";
 }
 
@@ -60,5 +117,7 @@ void menu(){
 void menuLinea(){
     cout << "\n\tLíneas de Producción\n\n"
         << "1 - Crear Prototipo\n"
-        << "2 - Fabricar ";
+        << "2 - Fabricar\n"
+        << "0 - Salir\n"
+        << "Seleccione una opción: ";
 }
