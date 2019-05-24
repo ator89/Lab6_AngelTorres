@@ -13,7 +13,7 @@ Edificio::~Edificio(){
 
 char** Edificio::crearMatriz(){
     matrix = new char*[5];
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         matrix[i] = new char[4];
     }
     return matrix;
@@ -29,7 +29,7 @@ void Edificio::initMatriz(){
 void Edificio::printMatriz(){
     for(int i = 0; i< 5; i++){
         for(int j= 0; j <4;j++){
-            cout << ' ' << matrix[i][j];
+            cout << '[' << matrix[i][j] << ']';
         }
         cout << endl;
     } 
