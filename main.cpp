@@ -25,11 +25,7 @@ int main(){
     matrix->initMatriz();
 
     Carro* carro = new Carro();
-    carro->setNombreModelo("CC");
-    carro->setNumeroSerie("1");
-    carro->setChasis(new Chasis("4x4","Manual"));
-    carro->setMotor(new Motor("Eléctrico","V8"));
-    carro->setPintura(new Pintura("Negro","Matte"));
+
 
 
     while (menuActivo)
@@ -50,6 +46,15 @@ int main(){
                                 cin >> opcionMenuLinea;
                                 switch(opcionMenuLinea){
                                     case 1://Crear prototipo
+                                    {
+
+                                        cout << "";
+                                        carro->setNombreModelo("CC");
+                                        carro->setNumeroSerie("1");
+                                        carro->setChasis(new Chasis("4x4","Manual"));
+                                        carro->setMotor(new Motor("Eléctrico","V8"));
+                                        carro->setPintura(new Pintura("Negro","Matte"));
+                                    }
                                     break;
                                     case 2:
                                     break;
