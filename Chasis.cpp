@@ -5,8 +5,9 @@ Chasis::Chasis(){
     tipo_rueda = "";
     transmision = "";
 }
-Chasis::Chasis(string,string){
-
+Chasis::Chasis(string tipor,string trans){
+    tipo_rueda = tipor;
+    transmision = trans;
 }
 //Destructor
 Chasis::~Chasis(){}
