@@ -17,7 +17,7 @@ void menu();
 void menuLinea();
 
 int main(){
-    vector<Carro> lista;
+    vector<Carro*> lista;
     int opcionMenu = -1;
     bool menuActivo = true;
     Edificio* matrix = new Edificio();
@@ -81,6 +81,7 @@ int main(){
                                         lineaCarros.push_back(carro);
                                         matrix->initMatriz(cantidadCarros);
                                         cantidadCarros++;
+                                        lista.push_back(carro);
                                         }
                                     }
                                     break;
@@ -113,10 +114,22 @@ int main(){
                         cout << "\nPintura -> " << "Color: " << lineaCarros[i]->getPintura()->getColor() << endl;
                         cout << "\tAcabado: " << lineaCarros[i]->getPintura()->getAcabado() << endl;
                     }
-                    
                 }
                 break;
                 case 4://Ver lista de carros producidos
+                {
+                    for(int i= 0; i < lista.size(); i++){
+                        cout << "\n\n\tLista de Carros\n\n";
+                        cout << "Modelo y Serie: "<< lineaCarros[i]->getNombreModelo() << lineaCarros[i]->getNumeroSerie() << endl;
+                        cout << "Chasis -> " << "Tipo Rueda: " << lineaCarros[i]->getChasis()->getTipoRueda()<<endl;
+                        cout << "\tTipo de Transmisión: " << lineaCarros[i]->getChasis()->getTransmision()<<endl;
+                        cout << "\nMotor -> " << "Tipo Motor: " << lineaCarros[i]->getMotor()->getTipoMotor() << endl;
+                        cout << "\tConfiguración: " << lineaCarros[i]->getMotor()->getConfiguracion() << endl;
+                        cout << "\nPintura -> " << "Color: " << lineaCarros[i]->getPintura()->getColor() << endl;
+                        cout << "\tAcabado: " << lineaCarros[i]->getPintura()->getAcabado() << endl;
+                    }
+                    
+                }
                 break;
                 case 5://Avanzar
                 break;
