@@ -24,9 +24,11 @@ int main(){
     matrix->crearMatriz();
     matrix->initMatriz();
 
-    Carro* carro = new Carro();
+    
 
-
+    int cantidadCarros = 0;
+ 
+    vector<Carro*> lineaCarros;
 
     while (menuActivo)
     {
@@ -47,13 +49,38 @@ int main(){
                                 switch(opcionMenuLinea){
                                     case 1://Crear prototipo
                                     {
+                                        if(cantidadCarros>5){
+                                            cout << "Ya no hay espacio para líneas de carros\n\n";
+                                            
+                                        }else{
+                                        Carro* carro = new Carro();
+                                        string nombreModelo, numeroSerie, tipoRuedas, transmision, tipoMotor, configuracion,color, acabado;
+                                        cout << "Ingrese el nombre del modelo";
+                                        cin >> nombreModelo;
+                                        cout << "Número de serie";
+                                        cin >> numeroSerie;
+                                        cout << "Tipo de Ruedas";
+                                        cin >> tipoRuedas;
+                                        cout << "Tipo de transmisión";
+                                        cin >> transmision;
+                                        cout << "Tipo de Motor (eléctrico-gas)";
+                                        cin >> tipoMotor;
+                                        cout << "Configuración del Motor (V6, V8,..)";
+                                        cin >> configuracion;
+                                        cout << "Color del carro";
+                                        cin >> color;
+                                        cout << "Acabado de Pintura";
+                                        cin >> acabado;
 
-                                        cout << "";
-                                        carro->setNombreModelo("CC");
-                                        carro->setNumeroSerie("1");
-                                        carro->setChasis(new Chasis("4x4","Manual"));
-                                        carro->setMotor(new Motor("Eléctrico","V8"));
-                                        carro->setPintura(new Pintura("Negro","Matte"));
+                                        carro->setNombreModelo(nombreModelo);
+                                        carro->setNumeroSerie(numeroSerie);
+                                        carro->setChasis(new Chasis(tipoRuedas,transmision));
+                                        carro->setMotor(new Motor(tipoMotor,configuracion));
+                                        carro->setPintura(new Pintura(color,acabado));
+
+                                        lineaCarros.push_back(carro);
+                                        cantidadCarros++;
+                                        }
                                     }
                                     break;
                                     case 2:
@@ -75,14 +102,17 @@ int main(){
                 break;
                 case 3://Ver líneas de producción 
                 {
-                    cout << "\n\n\tDetalles del Prototipo\n\n";
-                    cout << "Modelo y Serie: "<< carro->getNombreModelo() << carro->getNumeroSerie() << endl;
-                    cout << "Chasis -> " << "Tipo Rueda: " << carro->getChasis()->getTipoRueda()<<endl;
-                    cout << "\tTipo de Transmisión: " << carro->getChasis()->getTransmision()<<endl;
-                    cout << "\nMotor -> " << "Tipo Motor: " << carro->getMotor()->getTipoMotor() << endl;
-                    cout << "\tConfiguración: " << carro->getMotor()->getConfiguracion() << endl;
-                    cout << "\nPintura -> " << "Color: " << carro->getPintura()->getColor() << endl;
-                    cout << "\tAcabado: " << carro->getPintura()->getAcabado() << endl;
+                    for(int i= 0; i < lineaCarros.size(); i++){
+                        cout << "\n\n\tDetalles del Prototipo\n\n";
+                        cout << "Modelo y Serie: "<< lineaCarros[i]->getNombreModelo() << lineaCarros[i]->getNumeroSerie() << endl;
+                        cout << "Chasis -> " << "Tipo Rueda: " << lineaCarros[i]->getChasis()->getTipoRueda()<<endl;
+                        cout << "\tTipo de Transmisión: " << lineaCarros[i]->getChasis()->getTransmision()<<endl;
+                        cout << "\nMotor -> " << "Tipo Motor: " << lineaCarros[i]->getMotor()->getTipoMotor() << endl;
+                        cout << "\tConfiguración: " << lineaCarros[i]->getMotor()->getConfiguracion() << endl;
+                        cout << "\nPintura -> " << "Color: " << lineaCarros[i]->getPintura()->getColor() << endl;
+                        cout << "\tAcabado: " << lineaCarros[i]->getPintura()->getAcabado() << endl;
+                    }
+                    
                 }
                 break;
                 case 4://Ver lista de carros producidos
@@ -101,7 +131,11 @@ int main(){
         menuActivo = false;
     }//End while menú activo
 
-    delete carro;
+    for(int i =0; i < lineaCarros.size(); i++){
+        lineaCarros.back[i];
+        delete lineaCarros[i];
+    }
+    
     matrix->freeMatriz();
     return 0;
 }
@@ -122,7 +156,6 @@ void menu(){
 void menuLinea(){
     cout << "\n\tLíneas de Producción\n\n"
         << "1 - Crear Prototipo\n"
-        << "2 - Fabricar\n"
         << "0 - Salir\n"
         << "Seleccione una opción: ";
 }
