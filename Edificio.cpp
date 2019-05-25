@@ -19,10 +19,10 @@ char** Edificio::crearMatriz(){
     return matrix;
 }
 
-void Edificio::initMatriz(){
+void Edificio::initMatriz(int fila){
     for(int i = 0; i< 5; i++){
         for(int j= 0; j <4;j++){
-            matrix[i][j] = '.';
+            matrix[fila][0] = 'P';
         }
     }
 }

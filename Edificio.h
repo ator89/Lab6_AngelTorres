@@ -9,7 +9,7 @@ class Edificio{
         ~Edificio();
 
         char** crearMatriz();
-        void initMatriz();
+        void initMatriz(int);
         void printMatriz();
         void freeMatriz();
 };

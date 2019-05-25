@@ -22,7 +22,7 @@ int main(){
     bool menuActivo = true;
     Edificio* matrix = new Edificio();
     matrix->crearMatriz();
-    matrix->initMatriz();
+    
 
     
 
@@ -79,6 +79,7 @@ int main(){
                                         carro->setPintura(new Pintura(color,acabado));
 
                                         lineaCarros.push_back(carro);
+                                        matrix->initMatriz(cantidadCarros);
                                         cantidadCarros++;
                                         }
                                     }
@@ -132,7 +133,7 @@ int main(){
     }//End while menú activo
 
     for(int i =0; i < lineaCarros.size(); i++){
-        lineaCarros.back[i];
+        //lineaCarros.back[i];
         delete lineaCarros[i];
     }
     
