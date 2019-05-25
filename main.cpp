@@ -145,8 +145,12 @@ int main(){
         menuActivo = false;
     }//End while menú activo
 
+    //Liberar vectores
+    for(int i =0; i < lista.size(); i++){
+        delete lineaCarros[i];
+    }
+
     for(int i =0; i < lineaCarros.size(); i++){
-        //lineaCarros.back[i];
         delete lineaCarros[i];
     }
     
